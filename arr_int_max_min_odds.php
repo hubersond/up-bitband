@@ -29,11 +29,27 @@ function parseInputArgs(array $argValue): array
 }
 
 /**
- * Given an array of inputs, prints min and max integer values, and the odd numbers count in the array
+ * Given an array of integers prints min, max, and the odd numbers count in the array
+ *
+ * @param array $intArray   An array of integers
+ *
+ * @return void
+ */
+function printArrMinMaxOdds(array $intArray): void
+{
+    $max = max($intArray);
+    $min = min($intArray);
+    $oddNumbers = array_filter($intArray, fn($number) => $number % 2 !== 0);
+
+    printf("Maximum: %s \nMinimum: %s \nOdd numbers count: %s\n", $max, $min, count($oddNumbers));
+}
+
+/**
+ * Takes some console inputs then output min, max and amount of odd numbers
  *
  * @param array $args   Console input argument values
  *
- * @return void
+ * @return int
  */
 function main(array $args): int
 {
@@ -46,11 +62,7 @@ function main(array $args): int
         return 1;
     }
 
-    $max = max($intArray);
-    $min = min($intArray);
-    $oddNumbers = array_filter($intArray, fn($number) => $number % 2 !== 0);
-
-    printf("Maximum: %s \nMinimum: %s \nOdd numbers count: %s\n", $max, $min, count($oddNumbers));
+    printArrMinMaxOdds($intArray);
 
     return 0;
 }
